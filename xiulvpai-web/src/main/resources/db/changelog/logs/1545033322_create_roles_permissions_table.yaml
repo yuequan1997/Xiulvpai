@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1545033322
+      author: yuequan
+      changes:
+        - createTable:
+            tableName: roles_permissions
+            columns:
+              - column:
+                  name: role_id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: permission_id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false

@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: ${XIULVPAI_DB_DEV_URL}
+    username: ${LOCAL_DB_USERNAME}
+    password: ${LOCAL_DB_PASSWORD}
+server:
+  port: 9000

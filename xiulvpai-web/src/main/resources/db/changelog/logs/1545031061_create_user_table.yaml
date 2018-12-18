@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1545031061
+      author: yuequan
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: varchar(32)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(16)
+              - column:
+                  name: name
+                  type: varchar(32)
+              - column:
+                  name: password
+                  type: varchar(64)
+              - column:
+                  name: gender
+                  type: varchar(8)
+              - column:
+                  name: avatar_url
+                  type: varchar(256)
+              - column:
+                  name: email
+                  type: varchar(128)
+              - column:
+                  name: mobile_number
+                  type: varchar(32)
+              - column:
+                  name: born_at
+                  type: timestamp
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: updated_at
+                  type: timestamp
+        - createIndex:
+            indexName: idx_username
+            tableName: users
+            author: yuequan
+            unique: true
+            columns:
+              - column:
+                  name: username
+        - createIndex:
+            indexName: idx_name_and_mobile_number
+            tableName: users
+            author: yuequan
+            columns:
+              - column:
+                  name: name
+              - column:
+                  name: mobile_number
