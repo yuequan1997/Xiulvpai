@@ -30,4 +30,7 @@
 
 ### Project ###
 xiulvpai-web/target/**
+xiulvpai-common/target/**
+xiulvpai-security/target/**
+
 *.class
