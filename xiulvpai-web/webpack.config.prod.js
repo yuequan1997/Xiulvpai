@@ -3,12 +3,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ManifestReplacePlugin = require('webpack-manifest-replace-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJsPlugin = require('terser-webpack-plugin');
+const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 
 module.exports = {
     mode: 'production',
     output: {
         filename: '[name]-[chunkhash].js',
-        path: path.resolve(__dirname, 'target/classes/static/assets/javascripts'),
+        path: path.resolve(__dirname, 'target/classes/static/assets/'),
     },
     optimization: {
         minimizer: [
@@ -36,10 +37,11 @@ module.exports = {
             })],
     },
     plugins: [
-        new MiniCssExtractPlugin({filename: '[contenthash].css'}),
+        new FixStyleOnlyEntriesPlugin(),
+        new MiniCssExtractPlugin({filename: '[name]-[contenthash].css'}),
         new ManifestReplacePlugin({
             include: path.resolve(__dirname, 'src/main/resources/templates'),
-            test: /\.(jsp|html|htm)$/,
+            test: /\.(jsp|htm|html)$/,
             outputDir: path.resolve(__dirname, 'target/test/classes/templates'),
         }),
     ],

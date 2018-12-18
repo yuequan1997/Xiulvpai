@@ -4902,6 +4902,11 @@ webpack-cli@^3.1.2:
     v8-compile-cache "^2.0.2"
     yargs "^12.0.2"
 
+webpack-fix-style-only-entries@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/webpack-fix-style-only-entries/-/webpack-fix-style-only-entries-0.0.5.tgz#117fa3d9f8297902e97f1cd6ae231061586262db"
+  integrity sha512-GhsG9gvvsHIIrb+8MHWjrvzfXxHQHaQu/8pM6fbz/rJi7KgtXkFWVyPaFTdf2+a/VCbL2jQVIgG5wWMcsEL4BA==
+
 webpack-manifest-replace-plugin@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/webpack-manifest-replace-plugin/-/webpack-manifest-replace-plugin-1.0.0.tgz#bb9133e4f3fd9257c157759ca7adb8399f040c32"

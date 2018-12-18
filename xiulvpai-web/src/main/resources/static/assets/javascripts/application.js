@@ -77,7 +77,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/static/assets/";
+/******/ 	__webpack_require__.p = "/assets/";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -93,8 +93,11 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const hello = \"Hi\";\n\ndocument.write(hello);\n\n//# sourceURL=webpack:///./src/main/assets/javascripts/application.js?");
+const hello = "Hi";
+
+document.write(hello);
 
 /***/ })
 
 /******/ });
+//# sourceMappingURL=application.js.map

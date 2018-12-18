@@ -16,7 +16,7 @@ const entries = {
 const commonConfig = {
     entry: entries,
     output: {
-        publicPath: '/static/assets/'
+        publicPath: '/assets/'
     },
     module: {
         rules: [
