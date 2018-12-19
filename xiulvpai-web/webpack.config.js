@@ -10,7 +10,7 @@ const srcdir = path.resolve(__dirname, 'src/main/assets');
 
 const entries = {
     'javascripts/application': path.join(srcdir, 'javascripts/application.js'),
-    'stylesheets/test': path.join(srcdir, 'stylesheets/test.scss'),
+    'stylesheets/application': path.join(srcdir, 'stylesheets/application.scss'),
 };
 
 const commonConfig = {
@@ -20,10 +20,6 @@ const commonConfig = {
     },
     module: {
         rules: [
-            {
-                test: require.resolve('jquery'),
-                use: 'expose-loader?jQuery',
-            },
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
@@ -36,10 +32,12 @@ const commonConfig = {
             {
                 test: '/\.js$/',
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {presets: [['env', {module: false}]]}
-                }
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {presets: ['es2015', ['env', {module: false}]]}
+                    }
+                ]
             }
         ]
     },
@@ -47,23 +45,18 @@ const commonConfig = {
         namedModules: true,
         noEmitOnErrors: true,
         occurrenceOrder: true,
-        splitChunks: {
-            cacheGroups: {
-                default: false,
-                vendors: false,
-                common: {
-                    chunks: 'initial',
-                    name: 'common',
-                    test: chunks => chunks.resource && !/^.*\.(css|scss)$/.test(chunks.resource) && /node_modules/.test(chunks.context)
-                }
-            }
-        }
-    },
-    plugins: [
-        new webpack.ProvidePlugin({
-            jQuery: 'jquery'
-        })
-    ]
+        // splitChunks: {
+        //     cacheGroups: {
+        //         default: false,
+        //         vendors: false,
+        //         common: {
+        //             chunks: 'initial',
+        //             name: 'javascripts/common',
+        //             test: chunks => chunks.resource && !/^.*\.(css|scss)$/.test(chunks.resource) && /node_modules/.test(chunks.context)
+        //         }
+        //     }
+        // }
+    }
 }
 
 module.exports = (env) => env === 'dev'

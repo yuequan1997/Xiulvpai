@@ -1,3 +1,6 @@
-const hello = "Hi";
+const $ = require('jquery');
+window.$ = $;
+window.jQuery = $;
 
-document.write(hello);
+require('./materialize/materialize');
+require('./admin/layout');

@@ -42,7 +42,7 @@ module.exports = {
         new ManifestReplacePlugin({
             include: path.resolve(__dirname, 'src/main/resources/templates'),
             test: /\.(jsp|htm|html)$/,
-            outputDir: path.resolve(__dirname, 'target/test/classes/templates'),
+            outputDir: path.resolve(__dirname, 'target/classes/templates'),
         }),
     ],
 };

@@ -3,10 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <link rel="stylesheet" href="/assets/stylesheets/test.css" th:href="@{/assets/stylesheets/test.css}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/stylesheets/application.css" th:href="@{/assets/stylesheets/application.css}">
   <script src="/assets/javascripts/application.js" th:src="@{/assets/javascripts/application.js}"></script>
 </head>
 <body>
-  Home
+  <header id="header" class="header-topbar">
+    <div class="navbar-fixed">
+      <nav class="navbar-color">
+        <div class="nav-wrapper">
+          <ul class="left">
+            <li>
+              <div class="logo-wrapper">
+                <a href="" class="brand-logo">
+                  <img src="https://pixinvent.com/materialize-material-design-admin-template/images/logo/materialize-logo.png" alt="logo">
+                  <span class="logo-text hide-on-med-and-down">LOGO TEXT</span>
+                </a>
+              </div>
+            </li>
+          </ul>
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a href="javascript:void(0);" class="waves-bloc waves-effect dropdown-trigger profile-dropdown-button" data-target="avatar-profile-dropdown">
+               <span class="header-topbar__avatar">
+                  <img src="https://picsum.photos/300/200/?image=975" alt="avatar">
+               </span>
+              </a>
+            </li>
+          </ul>
+          <ul id="avatar-profile-dropdown" class="dropdown-content">
+            <li>
+              <a href="#" class="grey-text">
+                <i class="material-icons">keyboard_tab</i> Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <div>
+    21312
+  </div>
 </body>
 </html>
