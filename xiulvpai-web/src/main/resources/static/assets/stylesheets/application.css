@@ -6741,14 +6741,6 @@ html, body {
 #avatar-profile-dropdown {
   top: 60px !important; }
 
-#main {
-  position: relative;
-  left: 0px;
-  top: 0; }
-  @media screen and (min-width: 990px) {
-    #main {
-      left: 300px; } }
-
 #left-sidebar .collapsible-body li a {
   padding: 0 4rem; }
 
@@ -6766,8 +6758,20 @@ html, body {
   left: 1rem;
   z-index: 997; }
 
-#main .content {
-  padding: 1rem; }
+#main {
+  position: relative; }
+  #main .content-wrapper {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0; }
+    @media screen and (min-width: 990px) {
+      #main .content-wrapper {
+        left: 300px; } }
+    #main .content-wrapper .content {
+      position: relative;
+      padding: 1rem; }
 
 
 /*# sourceMappingURL=application.css.map*/

@@ -1,5 +1,17 @@
 #main{
-  .content{
-    padding: 1rem;
+  position: relative;
+  .content-wrapper{
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: 0;
+    @media screen and (min-width: 990px){
+      left: 300px;
+    }
+    .content{
+      position: relative;
+      padding: 1rem;
+    }
   }
 }
