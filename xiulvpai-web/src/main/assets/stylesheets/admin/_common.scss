@@ -38,3 +38,16 @@
 html, body{
   height:100%
 }
+
+#avatar-profile-dropdown{
+  top: 60px !important;
+}
+
+#main{
+  position: relative;
+  left: 0px;
+  top: 0;
+  @media screen and (min-width: 990px){
+    left: 300px;
+  }
+}

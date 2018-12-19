@@ -1,0 +1,21 @@
+#left-sidebar{
+  .collapsible-body{
+    li{
+      a{
+        padding: 0 4rem;
+      }
+    }
+  }
+  .sidenav{
+    transform: translateX(-300px);
+    top: 4.44rem;
+    @media screen and (min-width: 990px){
+      transform: translateX(0px);
+    }
+  }
+}
+#left-sidebar__menu-button{
+  top: -3.55rem;
+  left: 1rem;
+  z-index: 997;
+}

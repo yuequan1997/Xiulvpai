@@ -3,46 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="msapplication-tap-highlight" content="no">
+  <style>
+    @font-face {
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: 400;
+      src: url('/assets/fonts/material-icons.woff2') format('woff2');
+    }
+
+    .material-icons {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <link href="" th:href="@{/assets/fonts/material-icons.woff2}" rel="stylesheet">
   <link rel="stylesheet" href="/assets/stylesheets/application.css" th:href="@{/assets/stylesheets/application.css}">
   <script src="/assets/javascripts/application.js" th:src="@{/assets/javascripts/application.js}"></script>
 </head>
 <body>
-  <header id="header" class="header-topbar">
-    <div class="navbar-fixed">
-      <nav class="navbar-color">
-        <div class="nav-wrapper">
-          <ul class="left">
-            <li>
-              <div class="logo-wrapper">
-                <a href="" class="brand-logo">
-                  <img src="https://pixinvent.com/materialize-material-design-admin-template/images/logo/materialize-logo.png" alt="logo">
-                  <span class="logo-text hide-on-med-and-down">LOGO TEXT</span>
-                </a>
-              </div>
-            </li>
-          </ul>
-          <ul class="right hide-on-med-and-down">
-            <li>
-              <a href="javascript:void(0);" class="waves-bloc waves-effect dropdown-trigger profile-dropdown-button" data-target="avatar-profile-dropdown">
+<header id="header" class="header-topbar">
+  <div class="navbar-fixed">
+    <nav class="navbar-color">
+      <div class="nav-wrapper">
+        <ul class="left">
+          <li>
+            <div class="logo-wrapper">
+              <a href="" class="brand-logo">
+                <img src="https://pixinvent.com/materialize-material-design-admin-template/images/logo/materialize-logo.png"
+                     alt="logo">
+                <span class="logo-text hide-on-med-and-down">LOGO TEXT</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a href="javascript:void(0);" class="waves-bloc waves-effect dropdown-trigger profile-dropdown-button"
+               data-target="avatar-profile-dropdown">
                <span class="header-topbar__avatar">
                   <img src="https://picsum.photos/300/200/?image=975" alt="avatar">
                </span>
-              </a>
-            </li>
-          </ul>
-          <ul id="avatar-profile-dropdown" class="dropdown-content">
-            <li>
-              <a href="#" class="grey-text">
-                <i class="material-icons">keyboard_tab</i> Logout</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <div>
-    21312
+            </a>
+          </li>
+        </ul>
+        <ul id="avatar-profile-dropdown" class="dropdown-content">
+          <li>
+            <a href="#" class="grey-text">
+              <i class="material-icons">keyboard_tab</i> Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
+</header>
+
+<main id="main">
+  <aside id="left-sidebar">
+    <ul id="nav-mobile" class="sidenav">
+      <li class="bold"><a href="about.html" class="waves-effect waves-teal"><i class="material-icons dp48">dashboard</i> Dashboard</a></li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li class="bold">
+            <a class="collapsible-header waves-effect waves-teal" tabindex="0"><i class="material-icons dp48">supervisor_account</i> User Manage</a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href="color.html">Color</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <a id="left-sidebar__menu-button" href="#" data-target="nav-mobile" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only sidenav-trigger">
+      <i class="material-icons">menu</i>
+    </a>
+  </aside>
+  <section class="content">
+    12
+  </section>
+</main>
 </body>
 </html>

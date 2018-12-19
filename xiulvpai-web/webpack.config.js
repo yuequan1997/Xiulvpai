@@ -11,6 +11,7 @@ const srcdir = path.resolve(__dirname, 'src/main/assets');
 const entries = {
     'javascripts/application': path.join(srcdir, 'javascripts/application.js'),
     'stylesheets/application': path.join(srcdir, 'stylesheets/application.scss'),
+    'fonts/material-icons.woff2': path.join(srcdir, 'fonts/material-icons.woff2'),
 };
 
 const commonConfig = {
@@ -20,6 +21,11 @@ const commonConfig = {
     },
     module: {
         rules: [
+            {
+                test: /\.(woff|woff2|eot|ttf|svg)$/,
+                exclude: /node_modules/,
+                loader: 'url-loader?limit=1024&name=fonts/[name].[ext]'
+            },
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [

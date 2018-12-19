@@ -10,6 +10,9 @@ $(document).ready(() => {
         alignment: 'right',
         stopPropagation: false
     });
-
+    $('.collapsible').collapsible();
+    $('#nav-mobile').sidenav({
+        edge: 'left'
+    });
     console.debug("Initial end");
 });
