@@ -5,6 +5,8 @@ import com.yuequan.xiulvpai.common.respository.UserRepository;
 import com.yuequan.xiulvpai.web.exception.ResourceConflictException;
 import com.yuequan.xiulvpai.web.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,5 +44,9 @@ public class UserService {
         if(user.isPresent()){
             destroy(user.get());
         }
+    }
+
+    public Page<User> getUsers(Pageable pageable) {
+        return userRepository.findAll(pageable);
     }
 }
