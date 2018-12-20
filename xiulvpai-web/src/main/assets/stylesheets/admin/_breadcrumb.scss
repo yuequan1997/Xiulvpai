@@ -1,0 +1,17 @@
+.breadcrumbs {
+  padding: 0;
+  margin: 15px 0;
+  list-style: none;
+  > li {
+    display: inline-block;
+    + li:before {
+      padding: 0 5px;
+      color: color("grey", "lighten-1");
+      content: "/\00a0";
+    }
+  }
+  .active {
+    font-weight: normal;
+    color: color("grey", "base");
+  }
+}
