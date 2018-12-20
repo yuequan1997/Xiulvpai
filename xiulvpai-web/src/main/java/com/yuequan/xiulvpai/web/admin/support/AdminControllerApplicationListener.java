@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.logging.Level;
 
 /**
+ * @see <a href="https://checkerframework.org/jsr308/specification/java-annotation-extensions.html"></a>
+ * so hack
  * @author yuequan
  * @since 1.0
  **/

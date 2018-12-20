@@ -20,11 +20,6 @@ import java.lang.annotation.*;
 public @interface AdminController {
     @AliasFor(annotation = Controller.class)
     String value() default "";
-
-    /**
-     * @see <a href="https://checkerframework.org/jsr308/specification/java-annotation-extensions.html"></a>
-     * so
-     */
     @AliasFor(annotation = RequestMapping.class, value = "value")
     String path() default "/admin";
 }
