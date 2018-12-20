@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org/" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div layout:fragment="content">
+    <div class="row">
+      <div class="row">
+        <div class="col s10 m6 l6">
+          <ol class="breadcrumbs">
+            <li><a href="#">System Manage</a></li>
+            <li class="active">Users Manage</li>
+          </ol>
+        </div>
+        <div class="col s2 m6 l6">
+          <a href="admin/users/new" th:href="${#mvc.url('UC#newUser').build()}" class="btn-floating btn-large waves-effect waves-light right"><i class="material-icons">add</i></a>
+        </div>
+      </div>
+      <table class="striped highlight centered">
+        <thead>
+          <tr>
+            <th>用户名</th>
+            <th>名称</th>
+            <th>性别</th>
+            <th>注册时间</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr th:each="user : ${page.getContent()}" th:object="user">
+            <td th:text="*{username}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{gender}"></td>
+            <td th:text="*{createdAt}"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="center-align">
+        <ul class="pagination">
+          <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+          <li class="active"><a href="#!">1</a></li>
+          <li class="waves-effect"><a href="#!">2</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
