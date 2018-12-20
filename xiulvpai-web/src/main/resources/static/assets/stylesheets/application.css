@@ -6773,5 +6773,19 @@ html, body {
       position: relative;
       padding: 1rem; }
 
+.breadcrumbs {
+  padding: 0;
+  margin: 15px 0;
+  list-style: none; }
+  .breadcrumbs > li {
+    display: inline-block; }
+    .breadcrumbs > li + li:before {
+      padding: 0 5px;
+      color: #bdbdbd;
+      content: "/\00a0"; }
+  .breadcrumbs .active {
+    font-weight: normal;
+    color: #9e9e9e; }
+
 
 /*# sourceMappingURL=application.css.map*/
