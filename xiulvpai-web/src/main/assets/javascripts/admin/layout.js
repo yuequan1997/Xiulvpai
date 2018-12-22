@@ -18,5 +18,6 @@ $(document).ready(() => {
         format: 'yyyy-mm-dd',
         maxDate: new Date()
     });
-    console.debug("Initial end");
+
+    require('./component/_delete');
 });

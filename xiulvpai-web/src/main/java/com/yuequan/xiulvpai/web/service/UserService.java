@@ -23,7 +23,7 @@ public class UserService {
 
     @Transactional
     public User save(User user){
-        if(userRepository.findByUsername(user.getUsername()).isPresent() && user.getId() == null){
+        if(userRepository.findByUsername(user.getUsername()).isPresent() && (user.getId() == null || user.getId().isBlank())){
             throw new ResourceConflictException("");
         }
         return userRepository.save(user);

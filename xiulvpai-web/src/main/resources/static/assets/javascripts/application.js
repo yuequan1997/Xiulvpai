@@ -10493,12 +10493,50 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./src/main/assets/javascripts/admin/component/_delete.js":
+/*!****************************************************************!*\
+  !*** ./src/main/assets/javascripts/admin/component/_delete.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('.delete-btn').click((e) => {
+    e.preventDefault();
+    const href = $(e.target).data().href;
+    const deleteForm = `
+            <div id="deleteModal" class="modal">
+                <form action="${href}" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <div class="modal-content">
+                      <h4>提示</h4>
+                      <p>确定要删除该记录吗？</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="modal-close waves-effect waves-green btn-flat">取消</button>
+                      <button type="submit" class="modal-close waves-effect waves-green btn-flat">确定</button>
+                    </div>
+                </form>
+            </div>
+    `
+    $('body').append(deleteForm);
+    const deleteModal = $('#deleteModal');
+    deleteModal.modal({
+        onCloseEnd: () => {
+            deleteModal.remove();
+        }
+    });
+    deleteModal.modal('open');
+
+})
+
+/***/ }),
+
 /***/ "./src/main/assets/javascripts/admin/layout.js":
 /*!*****************************************************!*\
   !*** ./src/main/assets/javascripts/admin/layout.js ***!
   \*****************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 $(document).ready(() => {
     console.debug("Initial layout start");
@@ -10520,7 +10558,8 @@ $(document).ready(() => {
         format: 'yyyy-mm-dd',
         maxDate: new Date()
     });
-    console.debug("Initial end");
+
+    __webpack_require__(/*! ./component/_delete */ "./src/main/assets/javascripts/admin/component/_delete.js");
 });
 
 /***/ }),

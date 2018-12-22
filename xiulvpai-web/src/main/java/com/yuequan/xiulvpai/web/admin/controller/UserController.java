@@ -6,10 +6,7 @@ import com.yuequan.xiulvpai.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * User {@link AdminController}
@@ -43,12 +40,18 @@ public class UserController extends AdminBaseController{
     @PutMapping("/{id}")
     public String update(@PathVariable String id, User user){
         userService.save(user);
-        return "redirect:../";
+        return "redirect:./";
     }
 
     @PostMapping
     public String create(User user){
         userService.save(user);
+        return "redirect:./";
+    }
+
+    @DeleteMapping("/{id}")
+    public String destroy(@PathVariable String id){
+        userService.destroy(id);
         return "redirect:./";
     }
 }
