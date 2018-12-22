@@ -20,16 +20,47 @@
     </div>
     <div class="card-panel">
       <div class="row">
-        <form action="" class="col s12">
+        <form action="/admin/users" th:action="${user.id == null ? #mvc.url('UC#create').build() : (#mvc.url('UC#update').arg(0, user.id)).build()}" th:method="${user.id == null ? 'post' : 'put'}" class="col s12">
+          <input name="id" type="hidden" th:value="${user.id}">
           <div class="row">
             <div class="input-field col s6">
-              <input id="username" name="username" type="text" class="validate">
+              <input id="username" name="username" type="text" th:value="${user.username}" class="validate">
               <label for="username">Username</label>
             </div>
             <div class="input-field col s6">
-              <input id="password" name="password" type="password" class="validate">
+              <input id="password" name="password" type="password" th:value="${user.password}" class="validate">
               <label for="password">Password</label>
             </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="name" name="name" type="text" th:value="${user.name}" class="validate">
+              <label for="name">Name</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="email" name="email" type="email" th:value="${user.email}" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="mobileNumber" name="mobileNumber" type="text" th:value="${user.mobileNumber}" class="validate">
+              <label for="mobileNumber">Mobile Number</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="bornAt" name="bornAt" type="text" th:value="${user.bornAt}" class="datepicker validate">
+              <label for="bornAt">bornAt</label>
+            </div>
+          </div>
+          <div class="row">
+            <label>
+              <input name="gender" type="radio" value="MALE" checked />
+              <span>MALE</span>
+            </label>
+            <label>
+              <input name="gender" type="radio" VALUE="FEMALE" />
+              <span>FEMALE</span>
+            </label>
           </div>
           <div class="row">
             <div class="input-field col s12 center-align">

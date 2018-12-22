@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 /**
  * User {@link AdminController}
@@ -30,5 +32,23 @@ public class UserController extends AdminBaseController{
     public String newUser(Model model){
         model.addAttribute("user", new User());
         return "admin/users/form";
+    }
+
+    @GetMapping("/{id}")
+    public String edit(@PathVariable  String id, Model model){
+        model.addAttribute("user", userService.findById(id));
+        return "admin/users/form";
+    }
+
+    @PutMapping("/{id}")
+    public String update(@PathVariable String id, User user){
+        userService.save(user);
+        return "redirect:../";
+    }
+
+    @PostMapping
+    public String create(User user){
+        userService.save(user);
+        return "redirect:./";
     }
 }

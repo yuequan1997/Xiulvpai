@@ -14,5 +14,9 @@ $(document).ready(() => {
     $('#nav-mobile').sidenav({
         edge: 'left'
     });
+    $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        maxDate: new Date()
+    });
     console.debug("Initial end");
 });

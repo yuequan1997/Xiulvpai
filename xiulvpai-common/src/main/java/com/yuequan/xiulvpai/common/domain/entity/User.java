@@ -5,6 +5,7 @@ import com.yuequan.xiulvpai.common.domain.entity.support.RecordTime;
 import com.yuequan.xiulvpai.common.domain.entity.support.RecordTimeListener;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -35,6 +36,7 @@ public class User implements RecordTime {
     @Column(name = "mobile_number")
     private String mobileNumber;
     @Column(name = "born_at")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date bornAt;
     @Column(name = "created_at")
     private Date createdAt;

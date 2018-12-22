@@ -25,15 +25,20 @@
             <th>名称</th>
             <th>性别</th>
             <th>注册时间</th>
+            <th>操作</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr th:each="user : ${page.getContent()}" th:object="user">
+          <tr th:each="user : ${page.getContent()}" th:object="${user}">
             <td th:text="*{username}"></td>
             <td th:text="*{name}"></td>
             <td th:text="*{gender}"></td>
             <td th:text="*{createdAt}"></td>
+            <td>
+              <a th:href="${(#mvc.url('UC#edit').arg(0, user.id)).build()}" class="waves-effect waves-light btn">Edit</a>
+              <a class="waves-effect waves-light btn">Delete</a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -42,6 +47,10 @@
           <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
           <li class="active"><a href="#!">1</a></li>
           <li class="waves-effect"><a href="#!">2</a></li>
+          <li class="waves-effect"><a href="#!">3</a></li>
+          <li class="waves-effect"><a href="#!">4</a></li>
+          <li class="waves-effect"><a href="#!">5</a></li>
+          <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
         </ul>
       </div>
     </div>
