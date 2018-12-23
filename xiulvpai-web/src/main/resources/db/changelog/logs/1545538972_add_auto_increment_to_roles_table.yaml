@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1545538972
+      author: yuequan
+      changes:
+        - addAutoIncrement:
+            tableName: roles
+            columnDataType: int
+            columnName: id

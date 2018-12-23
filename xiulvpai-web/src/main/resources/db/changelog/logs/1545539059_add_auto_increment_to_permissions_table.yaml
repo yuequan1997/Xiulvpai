@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1545539059
+      author: yuequan
+      changes:
+        - addAutoIncrement:
+            tableName: permissions
+            columnDataType: int
+            columnName: id
