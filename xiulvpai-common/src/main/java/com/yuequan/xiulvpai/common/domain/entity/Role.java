@@ -1,6 +1,7 @@
 package com.yuequan.xiulvpai.common.domain.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,7 +16,7 @@ import java.util.Set;
 @Data
 public class Role {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String description;

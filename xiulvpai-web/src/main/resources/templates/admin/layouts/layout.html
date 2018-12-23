@@ -75,7 +75,7 @@
 <main id="main">
   <aside id="left-sidebar">
     <ul id="nav-mobile" class="sidenav">
-      <li class="bold"><a href="about.html" class="waves-effect waves-teal"><i class="material-icons dp48">dashboard</i> Dashboard</a></li>
+      <li class="bold"><a href="/admin" th:href="${#mvc.url('HC#index').build()}" class="waves-effect waves-teal"><i class="material-icons dp48">dashboard</i> Dashboard</a></li>
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li class="bold">
@@ -83,6 +83,7 @@
             <div class="collapsible-body">
               <ul>
                 <li><a href="admin/users" th:href="${#mvc.url('UC#index').build()}">Users Mange</a></li>
+                <li><a href="admin/users" th:href="${#mvc.url('RC#index').build()}">Roles Mange</a></li>
               </ul>
             </div>
           </li>

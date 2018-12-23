@@ -43,12 +43,12 @@
         </tbody>
       </table>
       <div class="center-align">
-        <ul class="pagination">
+        <ul th:if="${page.getTotalPages() > 0}" class="pagination">
           <li class="waves-effect" th:classappend="${page.isFirst() ? 'disabled' : ''}">
             <a href="javascript:;" th:href="${page.isFirst() ? 'javascript:;' : './?page=' + (page.getNumber() - 1)}" ><i class="material-icons">chevron_left</i></a>
           </li>
-          <li th:each="i: ${#numbers.sequence(1, page.getTotalPages())}" class="waves-effect" th:classappend="${(page.getNumber() + 1)  == i ? 'active' : ''}">
-            <a href="javascript:;" th:href="${'./?page='+(i - 1)}" th:text="${i}">1</a>
+          <li th:each="i: ${#numbers.sequence(0, page.getTotalPages() - 1)}" class="waves-effect" th:classappend="${(page.getNumber())  == i ? 'active' : ''}">
+            <a href="javascript:;" th:href="${'./?page='+(i)}" th:text="${i + 1}">1</a>
           </li>
           <li th:classappend="${page.isLast() ? 'disabled' : ''}" class="waves-effect">
             <a href="javascript:;" th:href="${page.isLast() ? 'javascript:;' : './?page=' + (page.getNumber() + 1)}">

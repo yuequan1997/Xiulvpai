@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org/" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="row">
+    <div class="row">
+      <div class="col s10 m6 l6">
+        <ol class="breadcrumbs">
+          <li><a href="#">System Manage</a></li>
+          <li class="active">Users Manage</li>
+        </ol>
+      </div>
+      <div class="col s2 m6 l6">
+        <a href="admin/roles/new" th:href="${#mvc.url('RC#newRole').build()}" class="btn-floating btn-large waves-effect waves-light right"><i class="material-icons">add</i></a>
+      </div>
+    </div>
+    <table class="striped highlight centered">
+      <thead>
+      <tr>
+        <th>角色名</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr th:each="role : ${page.getContent()}" th:object="${role}">
+        <td th:text="*{name}"></td>
+        <td>
+          <a th:href="${(#mvc.url('RC#edit').arg(0, role.id)).build()}" class="waves-effect waves-light btn">Edit</a>
+          <a class="waves-effect waves-light delete-btn btn" th:data-href="${(#mvc.url('RC#destroy').arg(0, role.id)).build()}">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="center-align">
+      <ul th:if="${page.getTotalPages() > 0}" class="pagination">
+        <li class="waves-effect" th:classappend="${page.isFirst() ? 'disabled' : ''}">
+          <a href="javascript:;" th:href="${page.isFirst() ? 'javascript:;' : './?page=' + (page.getNumber() - 1)}" ><i class="material-icons">chevron_left</i></a>
+        </li>
+        <li th:each="i: ${#numbers.sequence(0, page.getTotalPages() - 1)}" class="waves-effect" th:classappend="${(page.getNumber())  == i ? 'active' : ''}">
+          <a href="javascript:;" th:href="${'./?page='+(i)}" th:text="${i + 1}">1</a>
+        </li>
+        <li th:classappend="${page.isLast() ? 'disabled' : ''}" class="waves-effect">
+          <a href="javascript:;" th:href="${page.isLast() ? 'javascript:;' : './?page=' + (page.getNumber() + 1)}">
+            <i class="material-icons">chevron_right</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>
