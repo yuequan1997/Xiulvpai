@@ -15,7 +15,7 @@ import java.util.Set;
 @Data
 public class Permission {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String url;

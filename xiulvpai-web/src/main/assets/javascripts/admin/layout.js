@@ -20,4 +20,5 @@ $(document).ready(() => {
     });
 
     require('./component/_delete');
+    $('.modal').modal();
 });

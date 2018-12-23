@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org/" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="row">
+    <div class="col s10 m6 l6">
+      <ol class="breadcrumbs">
+        <li><a href="#">System Manage</a></li>
+        <li class="active">Permissions Manage</li>
+      </ol>
+    </div>
+    <div class="col s2 m6 l6">
+      <button data-target="addPermission" class="btn-floating btn-large waves-effect waves-light right modal-trigger"><i class="material-icons">add</i></button>
+    </div>
+  </div>
+  <div id="permission-tree">
+
+  </div>
+  <div id="addPermission" class="modal">
+    <form action="" th:action="${#mvc.url('PC#create').build()}" method="post">
+      <div class="modal-content">
+        <h4>添加权限</h4>
+        <div class="row">
+          <div class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Placeholder" id="permission-name" name="name" type="text" class="validate">
+                <label for="permission-name">Name</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Placeholder" id="permission-url"  name="url" type="text" class="validate">
+                <label for="permission-url">URL</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-close waves-effect waves-green btn-flat">取消</button>
+        <button type="submit" class="modal-close waves-effect waves-green btn-flat">添加</button>
+      </div>
+    </form>
+  </div>
+  <script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    var permissionTree = /*[[${permissions}]]*/ [];
+    /*]]>*/
+
+    $(document).ready(function(){
+        init();
+    });
+
+    function init() {
+        $("#permission-tree").html('');
+        dTree.init(permissionTree, {
+            target: "#permission-tree",
+            debug: true,
+            width: $('#permission-tree').width(),
+            height: $('body').height(),
+            callbacks: {
+                nodeClick: function(name, extra) {
+                    console.log(name);
+                },
+                textRenderer: function(name, extra, textClass) {
+                    return "<p align='center' class='" + textClass + "'>" + name + "</p>";
+                },
+                nodeRenderer: function(name, x, y, height, width, extra, id, nodeClass, textClass, textRenderer) {
+                    // This callback is optional but can be used to customize the
+                    // node element using HTML.
+                    let node = '';
+                    node += '<div ';
+                    node += 'style="height:100%;width:100%;" ';
+                    node += 'class="' + nodeClass + '" ';
+                    node += 'id="node' + id + '">\n';
+                    node += textRenderer(name, extra, textClass);
+                    node += '</div>';
+                    return node;
+                }
+            }
+        });
+    }
+  </script>
+</div>
+</body>
+</html>

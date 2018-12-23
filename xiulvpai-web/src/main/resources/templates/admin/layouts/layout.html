@@ -34,6 +34,9 @@
   <link href="" th:href="@{/assets/fonts/material-icons.woff2}" rel="stylesheet">
   <link rel="stylesheet" href="/assets/stylesheets/application.css" th:href="@{/assets/stylesheets/application.css}">
   <script src="/assets/javascripts/application.js" th:src="@{/assets/javascripts/application.js}"></script>
+  <th:block layout:fragment="resources">
+
+  </th:block>
 </head>
 <body>
 <header id="header" class="header-topbar">
@@ -84,6 +87,7 @@
               <ul>
                 <li><a href="admin/users" th:href="${#mvc.url('UC#index').build()}">Users Mange</a></li>
                 <li><a href="admin/users" th:href="${#mvc.url('RC#index').build()}">Roles Mange</a></li>
+                <li><a href="admin/users" th:href="${#mvc.url('PC#index').build()}">Permissions Mange</a></li>
               </ul>
             </div>
           </li>
