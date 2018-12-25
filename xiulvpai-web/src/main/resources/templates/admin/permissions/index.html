@@ -3,6 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <th:block layout:fragment="resources">
+    <style>
+      .linage {
+        fill: none;
+        stroke: black;
+      }
+      .marriage {
+        fill: none;
+        stroke: black;
+      }
+      .permission-node {
+        background-color: lightblue;
+        border-style: solid;
+        border-width: 1px;
+      }
+      .nodeText{
+        font: 10px sans-serif;
+      }
+
+      .node {
+        background-color: lightblue;
+        border-style: solid;
+        border-width: 1px;
+      }
+    </style>
+  </th:block>
 </head>
 <body>
 <div layout:fragment="content">
@@ -27,6 +53,7 @@
         <div class="row">
           <div class="col s12">
             <div class="row">
+              <input type="hidden" id="parentId" name="parent.id">
               <div class="input-field col s6">
                 <input placeholder="Placeholder" id="permission-name" name="name" type="text" class="validate">
                 <label for="permission-name">Name</label>
@@ -40,7 +67,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="modal-close waves-effect waves-green btn-flat">取消</button>
+        <button type="reset" class="modal-close waves-effect waves-green btn-flat">取消</button>
         <button type="submit" class="modal-close waves-effect waves-green btn-flat">添加</button>
       </div>
     </form>
@@ -62,19 +89,16 @@
             width: $('#permission-tree').width(),
             height: $('body').height(),
             callbacks: {
-                nodeClick: function(name, extra) {
-                    console.log(name);
+                nodeClick: function(name, extra, id) {
+                    $('#parentId').val($('#node'+id).data().id);
+                    $('#addPermission').modal('open');
                 },
-                textRenderer: function(name, extra, textClass) {
-                    return "<p align='center' class='" + textClass + "'>" + name + "</p>";
-                },
-                nodeRenderer: function(name, x, y, height, width, extra, id, nodeClass, textClass, textRenderer) {
-                    // This callback is optional but can be used to customize the
-                    // node element using HTML.
+                nodeRenderer: function(name, x, y, height, width, extra, id, nodeClass, textClass, textRenderer, metaData) {
                     let node = '';
                     node += '<div ';
                     node += 'style="height:100%;width:100%;" ';
                     node += 'class="' + nodeClass + '" ';
+                    node += 'data-id="'+metaData.id + '"';
                     node += 'id="node' + id + '">\n';
                     node += textRenderer(name, extra, textClass);
                     node += '</div>';

@@ -2,6 +2,7 @@ package com.yuequan.xiulvpai.web.service;
 
 import com.yuequan.xiulvpai.common.domain.entity.Permission;
 import com.yuequan.xiulvpai.common.respository.PermissionRepository;
+import com.yuequan.xiulvpai.web.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,7 +51,7 @@ public class PermissionService {
     }
 
     private void populateAncestors(Permission permission){
-        Permission parent = permission.getParent();
+        Permission parent = permissionRepository.findById(permission.getParent().getId()).orElseThrow(() -> new ResourceNotFoundException(""));
         if(parent == null){
             permission.setAncestors(ANCESTOR_DELIMITER + permission.getId() + ANCESTOR_DELIMITER);
         }else{

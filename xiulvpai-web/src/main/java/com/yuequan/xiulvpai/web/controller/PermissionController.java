@@ -1,5 +1,11 @@
 package com.yuequan.xiulvpai.web.controller;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationConfig;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.yuequan.xiulvpai.common.domain.entity.Permission;
 import com.yuequan.xiulvpai.web.admin.annotation.AdminController;
 import com.yuequan.xiulvpai.web.service.PermissionService;
@@ -20,7 +26,7 @@ public class PermissionController {
     private PermissionService permissionService;
 
     @GetMapping
-    public String index(Model model){
+    public String index(Model model) throws JsonProcessingException {
         model.addAttribute("permissions", permissionService.getPermissions());
         return "admin/permissions/index";
     }
