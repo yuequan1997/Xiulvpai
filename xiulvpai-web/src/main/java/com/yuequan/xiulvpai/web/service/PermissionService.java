@@ -31,6 +31,22 @@ public class PermissionService {
         return permission;
     }
 
+    public List<Permission> getChildren(Permission root){
+        return permissionRepository.findByAncestorsStartingWithOrderByAncestorsAsc(root.getAncestors());
+    }
+
+    @Transactional
+    public void delete(Integer id){
+        var permission = permissionRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(""));
+        if(getChildren(permission).size() == 1){
+            permissionRepository.delete(permission);
+        }
+    }
+
+    public Permission findById(Integer id){
+        return permissionRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(""));
+    }
+
     public List<Permission> getPermissions(){
         var flatPermissions = permissionRepository.findAllByOrderByAncestorsAsc();
         Map<Integer, Permission> flatTreeMap = new HashMap<>();
@@ -51,7 +67,13 @@ public class PermissionService {
     }
 
     private void populateAncestors(Permission permission){
-        Permission parent = permissionRepository.findById(permission.getParent().getId()).orElseThrow(() -> new ResourceNotFoundException(""));
+        var parent = permission.getParent();
+        if(parent != null && parent.getId() != null){
+            parent = permissionRepository.findById(permission.getParent().getId()).orElse(null);
+        }else{
+            parent = null;
+        }
+        permission.setParent(parent);
         if(parent == null){
             permission.setAncestors(ANCESTOR_DELIMITER + permission.getId() + ANCESTOR_DELIMITER);
         }else{
