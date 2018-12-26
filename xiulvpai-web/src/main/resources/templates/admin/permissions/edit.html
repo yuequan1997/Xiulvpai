@@ -22,15 +22,19 @@
       <div class="row">
         <form action="/admin/roles" th:action="${(#mvc.url('PC#update').arg(0, permission.id)).build()}" th:method="put" class="col s12">
           <input name="id" type="hidden" th:value="${permission.id}">
+          <input name="parent.id" type="hidden" th:value="${permission?.parent?.id}">
           <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s4">
               <input id="name" name="name" type="text" th:value="${permission.name}" class="validate">
               <label for="name">Name</label>
             </div>
-
-            <div class="input-field col s6">
-              <input id="url" name="url" type="text" th:value="${permission.url}" class="validate">
-              <label for="description">url</label>
+            <div class="input-field col s4">
+              <input id="path" name="path" type="text" th:value="${permission.path}" class="validate">
+              <label for="path">Path</label>
+            </div>
+            <div class="input-field col s4">
+              <input id="permissionKey" name="permissionKey" type="text" th:value="${permission.permissionKey}" class="validate">
+              <label for="permissionKey">Key</label>
             </div>
           </div>
           <div class="row">

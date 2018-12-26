@@ -19,8 +19,10 @@ public class Permission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String url;
+    private String path;
     private String ancestors;
+    @Column(name = "permission_key")
+    private String permissionKey;
     @OneToOne
     @JsonIgnore
     private Permission parent;
@@ -32,8 +34,9 @@ public class Permission {
         return "Permission{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
+                ", path='" + path + '\'' +
                 ", ancestors='" + ancestors + '\'' +
+                ", permissionKey='" + permissionKey + '\'' +
                 '}';
     }
 }

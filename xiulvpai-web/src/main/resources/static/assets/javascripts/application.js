@@ -55987,7 +55987,6 @@ function initDeleteButton(){
     console.debug("init delete button start");
     $('.delete-btn').click((e) => {
         e.preventDefault();
-        debugger;
         const href = $(e.currentTarget).data().href;
         const deleteForm = `
             <div id="deleteModal" class="modal">

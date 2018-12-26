@@ -14,9 +14,12 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: name
-                  type: varchar(16)
+                  type: varchar(32)
               - column:
-                  name: url
+                  name: permission_key
+                  type: varchar(32)
+              - column:
+                  name: path
                   type: varchar(256)
               - column:
                   name: ancestors
