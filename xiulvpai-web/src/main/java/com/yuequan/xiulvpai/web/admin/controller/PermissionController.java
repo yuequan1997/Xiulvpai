@@ -1,4 +1,4 @@
-package com.yuequan.xiulvpai.web.controller;
+package com.yuequan.xiulvpai.web.admin.controller;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -11,8 +11,7 @@ import com.yuequan.xiulvpai.web.admin.annotation.AdminController;
 import com.yuequan.xiulvpai.web.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Permission {@link AdminController}
@@ -37,4 +36,21 @@ public class PermissionController {
         return "redirect:./";
     }
 
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Integer id){
+        permissionService.delete(id);
+        return "redirect:./";
+    }
+
+    @GetMapping("/{id}")
+    public String edit(@PathVariable Integer id, Model model){
+        model.addAttribute("permission", permissionService.findById(id));
+        return "admin/permissions/edit";
+    }
+
+    @PutMapping("/{id}")
+    public String update(@PathVariable Integer id, Permission permission){
+        permissionService.save(permission);
+        return "redirect:./";
+    }
 }
