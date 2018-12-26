@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <th:block layout:fragment="resources">
+    <link rel="stylesheet" href="/public/jstree/themes/default/style.css">
+    <script src="/public/jstree/jstree.min.js"></script>
+  </th:block>
 </head>
 <body>
 <div layout:fragment="content">
@@ -34,6 +38,11 @@
             </div>
           </div>
           <div class="row">
+            <div id="permission-tree">
+
+            </div>
+          </div>
+          <div class="row">
             <div class="input-field col s12 center-align">
               <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                 <i class="material-icons right">send</i>
@@ -44,6 +53,21 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript" th:inline="javascript">
+      /*<![CDATA[*/
+      var permissionTree = /*[[${permissions}]]*/ [];
+      /*]]>*/
+      $(document).ready(function(){
+
+          $("#permission-tree").jstree({
+              'core' : {
+                  'data' : permissionTree
+              }
+          });
+      })
+
+      function treeReplaceKey(){}
+  </script>
 </div>
 </body>
 </html>

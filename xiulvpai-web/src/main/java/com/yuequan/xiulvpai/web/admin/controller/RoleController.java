@@ -2,8 +2,8 @@ package com.yuequan.xiulvpai.web.admin.controller;
 
 import com.yuequan.xiulvpai.common.domain.entity.Role;
 import com.yuequan.xiulvpai.web.admin.annotation.AdminController;
+import com.yuequan.xiulvpai.web.service.PermissionService;
 import com.yuequan.xiulvpai.web.service.RoleService;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
@@ -19,6 +19,9 @@ public class RoleController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private PermissionService permissionService;
 
     @GetMapping
     public String index(Pageable pageable, Model model){
@@ -40,6 +43,7 @@ public class RoleController {
     @GetMapping("/new")
     public String newRole(Role role, Model model){
         model.addAttribute("role", new Role());
+        model.addAttribute("permissions", permissionService.getPermissions());
         return "admin/roles/form";
     }
 
