@@ -1,7 +1,10 @@
-$('.delete-btn').click((e) => {
-    e.preventDefault();
-    const href = $(e.target).data().href;
-    const deleteForm = `
+function initDeleteButton(){
+    console.debug("init delete button start");
+    $('.delete-btn').click((e) => {
+        e.preventDefault();
+        debugger;
+        const href = $(e.currentTarget).data().href;
+        const deleteForm = `
             <div id="deleteModal" class="modal">
                 <form action="${href}" method="post">
                     <input type="hidden" name="_method" value="delete">
@@ -16,13 +19,18 @@ $('.delete-btn').click((e) => {
                 </form>
             </div>
     `
-    $('body').append(deleteForm);
-    const deleteModal = $('#deleteModal');
-    deleteModal.modal({
-        onCloseEnd: () => {
-            deleteModal.remove();
-        }
-    });
-    deleteModal.modal('open');
+        $('body').append(deleteForm);
+        const deleteModal = $('#deleteModal');
+        deleteModal.modal({
+            onCloseEnd: () => {
+                deleteModal.remove();
+            }
+        });
+        deleteModal.modal('open');
 
-})
+    });
+
+    console.debug("init delete button end");
+}
+window.initDeleteButton = initDeleteButton;
+initDeleteButton();
