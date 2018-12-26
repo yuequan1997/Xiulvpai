@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org/" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/layouts/layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="row">
+    <div class="row">
+      <div class="col s10 m6 l6">
+        <ol class="breadcrumbs">
+          <li><a href="#">System Manage</a></li>
+          <li class="active">Permission Manage</li>
+        </ol>
+      </div>
+      <div class="col s2 m6 l6">
+        <a href="javascript:;" onclick="window.history.back();" class="btn-floating btn-large waves-effect waves-light right"><i class="material-icons">arrow_back</i></a>
+      </div>
+    </div>
+    <div class="card-panel">
+      <div class="row">
+        <form action="/admin/roles" th:action="${(#mvc.url('PC#update').arg(0, permission.id)).build()}" th:method="put" class="col s12">
+          <input name="id" type="hidden" th:value="${permission.id}">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="name" name="name" type="text" th:value="${permission.name}" class="validate">
+              <label for="name">Name</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input id="url" name="url" type="text" th:value="${permission.url}" class="validate">
+              <label for="description">url</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 center-align">
+              <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

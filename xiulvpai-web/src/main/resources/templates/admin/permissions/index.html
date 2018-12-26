@@ -27,6 +27,11 @@
         border-style: solid;
         border-width: 1px;
       }
+      .fixed-action-btn.context-menu{
+        bottom: 0px;
+        right: 0px;
+        padding: 0px;
+      }
     </style>
   </th:block>
 </head>
@@ -55,11 +60,11 @@
             <div class="row">
               <input type="hidden" id="parentId" name="parent.id">
               <div class="input-field col s6">
-                <input placeholder="Placeholder" id="permission-name" name="name" type="text" class="validate">
+                <input autocomplete="off" placeholder="Placeholder" id="permission-name" name="name" type="text" class="validate">
                 <label for="permission-name">Name</label>
               </div>
               <div class="input-field col s6">
-                <input placeholder="Placeholder" id="permission-url"  name="url" type="text" class="validate">
+                <input autocomplete="off" placeholder="Placeholder" id="permission-url"  name="url" type="text" class="validate">
                 <label for="permission-url">URL</label>
               </div>
             </div>
@@ -79,7 +84,15 @@
 
     $(document).ready(function(){
         init();
+      $('.fixed-action-btn').floatingActionButton({
+        direction: 'left'
+      });
     });
+
+    function openAddPermission(id){
+      $('#parentId').val(id);
+      $('#addPermission').modal('open');
+    }
 
     function init() {
         $("#permission-tree").html('');
@@ -87,25 +100,26 @@
             target: "#permission-tree",
             debug: true,
             width: $('#permission-tree').width(),
-            height: $('body').height(),
+            height: $('body').height() - 100,
             callbacks: {
                 nodeClick: function(name, extra, id) {
-                    $('#parentId').val($('#node'+id).data().id);
-                    $('#addPermission').modal('open');
+                    //openAddPermission($('#node'+id).data().id);
                 },
                 nodeRenderer: function(name, x, y, height, width, extra, id, nodeClass, textClass, textRenderer, metaData) {
                     let node = '';
                     node += '<div ';
                     node += 'style="height:100%;width:100%;" ';
-                    node += 'class="' + nodeClass + '" ';
+                    node += 'class="fixed-action-btn context-menu ' + nodeClass + '" ';
                     node += 'data-id="'+metaData.id + '"';
                     node += 'id="node' + id + '">\n';
                     node += textRenderer(name, extra, textClass);
+                    node += '<ul> <li><a class="btn-floating red delete-btn" data-href="/admin/permissions/'+ metaData.id +'"><i class="material-icons">delete</i></a></li><li><a href="/admin/permissions/' + metaData.id + '" class="btn-floating green"><i class="material-icons">info_outline</i></a></li> <li><a href="javascript:;" onclick="openAddPermission('+metaData.id+')" class="btn-floating blue"><i class="material-icons">add</i></a></li> </ul>';
                     node += '</div>';
                     return node;
                 }
             }
         });
+        initDeleteButton();
     }
   </script>
 </div>
