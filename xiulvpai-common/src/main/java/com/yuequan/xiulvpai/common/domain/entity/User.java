@@ -43,5 +43,6 @@ public class User implements RecordTime {
     @Column(name = "updated_at")
     private Date updatedAt;
     @OneToMany
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 }

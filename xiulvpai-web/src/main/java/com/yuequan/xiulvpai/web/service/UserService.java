@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
+
 /**
  * {@link User} Service
  * @author yuequan
@@ -21,12 +23,24 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RoleService roleService;
+
     @Transactional
     public User save(User user){
         if(userRepository.findByUsername(user.getUsername()).isPresent() && (user.getId() == null || user.getId().isBlank())){
             throw new ResourceConflictException("");
         }
         return userRepository.save(user);
+    }
+
+    @Transactional
+    public User save(User user, Integer[] roleIds){
+        user.setRoles(null);
+        if(roleIds != null && roleIds.length > 0){
+            user.setRoles(new HashSet<>(roleService.findByIdIn(roleIds)));
+        }
+        return save(user);
     }
 
     public User findById(String id){

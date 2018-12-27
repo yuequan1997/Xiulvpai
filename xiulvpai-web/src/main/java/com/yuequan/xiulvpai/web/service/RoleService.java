@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * {@link Role} Service
@@ -40,6 +41,10 @@ public class RoleService {
         return save(role);
     }
 
+    public List<Role> getRoles(){
+        return roleRepository.findAll();
+    }
+
     public Page<Role> getRoles(Pageable pageable){
         return roleRepository.findAll(pageable);
     }
@@ -56,5 +61,9 @@ public class RoleService {
     @Transactional
     public void delete(Role role){
         roleRepository.delete(role);
+    }
+
+    public List<Role> findByIdIn(Integer[] roleIds) {
+        return roleRepository.findByIdIn(roleIds);
     }
 }
