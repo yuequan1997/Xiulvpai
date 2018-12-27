@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
@@ -36,6 +37,7 @@ public class UserController extends AdminBaseController{
     public String newUser(Model model){
         model.addAttribute("user", new User());
         model.addAttribute("roles", roleService.getRoles());
+        model.addAttribute("hasRoles", new ArrayList<>(0));
         return "admin/users/form";
     }
 

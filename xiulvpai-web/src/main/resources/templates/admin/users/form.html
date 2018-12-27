@@ -54,11 +54,11 @@
           </div>
           <div class="row">
             <label>
-              <input name="gender" type="radio" value="MALE" th:checked="${user.gender.toString() == 'MALE' || user.gender == null}" />
+              <input name="gender" type="radio" value="MALE" th:checked="${user?.gender?.toString() == 'MALE' || user?.gender == null}" />
               <span>MALE</span>
             </label>
             <label>
-              <input name="gender" type="radio" VALUE="FEMALE" th:checked="${user.gender.toString() == 'FEMALE'}"/>
+              <input name="gender" type="radio" VALUE="FEMALE" th:checked="${user?.gender?.toString() == 'FEMALE'}"/>
               <span>FEMALE</span>
             </label>
           </div>
@@ -66,7 +66,7 @@
             <label>Roles:&nbsp;&nbsp;</label>
             <th:block th:each="role : ${roles}" th:object="${role}">
               <label>
-                <input th:checked="${hasRoles.indexOf(role.id) > -1}" name="roleIds"  class="filled-in" type="checkbox" th:value="*{id}" VALUE="" />
+                <input th:checked="${hasRoles?.indexOf(role.id) > -1}" name="roleIds"  class="filled-in" type="checkbox" th:value="*{id}" VALUE="" />
                 <span th:text="*{name}" style="line-height: 19px;font-size: 1.1rem;"></span>&nbsp;&nbsp;
               </label>
             </th:block>
