@@ -3,28 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>xiulvpai</artifactId>
+        <artifactId>xiulvpai-security</artifactId>
         <groupId>org.yuequan</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>xiulvpai-security</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>xiulvpai-security-authentication</module>
-        <module>xiulvpai-security-common</module>
-        <module>xiulvpai-security-authorization</module>
-    </modules>
+    <artifactId>xiulvpai-security-authentication</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.yuequan</groupId>
-            <artifactId>xiulvpai-common</artifactId>
+            <artifactId>xiulvpai-security-common</artifactId>
             <version>${xiulvpai.version}</version>
         </dependency>
     </dependencies>

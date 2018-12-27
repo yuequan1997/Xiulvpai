@@ -50,6 +50,16 @@
             <version>${xiulvpai.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.yuequan</groupId>
+            <artifactId>xiulvpai-security-authentication</artifactId>
+            <version>${xiulvpai.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yuequan</groupId>
+            <artifactId>xiulvpai-security-authorization</artifactId>
+            <version>${xiulvpai.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
