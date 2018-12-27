@@ -21,5 +21,6 @@ public class Role {
     private String name;
     private String description;
     @OneToMany
+    @JoinTable(name = "roles_permissions", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns =  @JoinColumn(name = "permission_id"))
     private Set<Permission> permissions;
 }

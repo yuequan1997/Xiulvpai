@@ -1,5 +1,6 @@
 package com.yuequan.xiulvpai.web.admin.controller;
 
+import com.yuequan.xiulvpai.common.domain.entity.Permission;
 import com.yuequan.xiulvpai.common.domain.entity.Role;
 import com.yuequan.xiulvpai.web.admin.annotation.AdminController;
 import com.yuequan.xiulvpai.web.service.PermissionService;
@@ -8,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Role {@link AdminController}
@@ -31,25 +36,33 @@ public class RoleController {
 
     @GetMapping("/{id}")
     public String edit(@PathVariable Integer id, Model model){
-        model.addAttribute("role", roleService.findById(id));
+        var role = roleService.findById(id);
+        model.addAttribute("role", role);
+        model.addAttribute("permissions", permissionService.getPermissions());
+        if(role.getPermissions() == null){
+            model.addAttribute("hadPermissions", new ArrayList<>());
+        }else{
+            model.addAttribute("hadPermissions", role.getPermissions().stream().map(Permission::getId).collect(Collectors.toList()));
+        }
         return "admin/roles/form";
     }
 
     @PutMapping("/{id}")
-    public String update(@PathVariable Integer id, Role role, Model model){
-        return create(role);
+    public String update(@PathVariable Integer id, Role role, Integer[] permissionIds, Model model){
+        return create(role, permissionIds);
     }
 
     @GetMapping("/new")
     public String newRole(Role role, Model model){
         model.addAttribute("role", new Role());
         model.addAttribute("permissions", permissionService.getPermissions());
+        model.addAttribute("hadPermissions", new ArrayList<>());
         return "admin/roles/form";
     }
 
     @PostMapping
-    public String create(Role role){
-        roleService.save(role);
+    public String create(Role role, Integer[] permissionIds){
+        roleService.save(role, permissionIds);
         return "redirect:./";
     }
 

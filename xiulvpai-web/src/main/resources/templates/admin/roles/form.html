@@ -24,7 +24,7 @@
     </div>
     <div class="card-panel">
       <div class="row">
-        <form action="/admin/roles" th:action="${role.id == null ? #mvc.url('RC#create').build() : (#mvc.url('RC#update').arg(0, role.id)).build()}" th:method="${role.id == null ? 'post' : 'put'}" class="col s12">
+        <form id="permission-form" action="/admin/roles" th:action="${role.id == null ? #mvc.url('RC#create').build() : (#mvc.url('RC#update').arg(0, role.id)).build()}" th:method="${role.id == null ? 'post' : 'put'}" class="col s12">
           <input name="id" type="hidden" th:value="${role.id}">
           <div class="row">
             <div class="input-field col s6">
@@ -56,17 +56,61 @@
   <script type="text/javascript" th:inline="javascript">
       /*<![CDATA[*/
       var permissionTree = /*[[${permissions}]]*/ [];
+      var defaultSelected = /*[[${hadPermissions}]]*/ [];
       /*]]>*/
       $(document).ready(function(){
+        treeAddKey(permissionTree, {name: 'text'});
+        treeDefaultChecked(permissionTree, defaultSelected);
+        console.log(permissionTree);
+        $("#permission-tree").jstree({
+          'core': {
+            'data': permissionTree
+          },
+          'checkbox': {
+            'keep_selected_style' : false
+          },
+          'plugins': ["checkbox"]
+        });
 
-          $("#permission-tree").jstree({
-              'core' : {
-                  'data' : permissionTree
-              }
-          });
+        $("button[type='submit']").on('click', function(e){
+          e.preventDefault();
+          var selectedElmsIds = $('#permission-tree').jstree("get_selected");
+          selectedElmsIds.forEach(function (id) {
+            $("#permission-form").append('<input type="hidden" name="permissionIds" value='+id+' />')
+          })
+          $('#permission-form').submit();
+        });
       })
 
-      function treeReplaceKey(){}
+      function treeDefaultChecked(tree, defaultIds){
+        treeEach(tree, function(node){
+            if(defaultIds.indexOf(node.id) > -1){
+                var state = node.state || {};
+                state.selected = true;
+                node.state = state;
+            }
+        });
+      }
+
+      function treeAddKey(tree, replaceOptions){
+          treeEach(tree, function(node){
+            for(key in replaceOptions){
+              var value = node[key]
+              var addKey = replaceOptions[key]
+              node[addKey] = value
+            }
+          })
+      }
+
+      function treeEach(tree, callback){
+        if(!tree){
+          return;
+        }
+        tree.forEach(function(node){
+          treeEach(node.children, callback);
+          callback(node)
+        });
+      }
   </script>
 </div>
 </body>

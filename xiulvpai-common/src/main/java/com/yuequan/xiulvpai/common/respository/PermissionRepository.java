@@ -13,4 +13,5 @@ import java.util.List;
 public interface PermissionRepository extends JpaRepository<Permission, Integer> {
     List<Permission> findAllByOrderByAncestorsAsc();
     List<Permission> findByAncestorsStartingWithOrderByAncestorsAsc(String rootAncestors);
+    List<Permission> findByIdIn(Integer[] ids);
 }
