@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -66,14 +67,17 @@ public class CommonSecurityConfiguration extends WebSecurityConfigurerAdapter {
         @Autowired
         private UserRepository userRepository;
 
+        @Transactional(readOnly = true)
         @Override
         public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
             var user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("username not found"));
+            var roles = user.getRoles();
+            roles.size(); // non lazy
             return new UserDetails() {
                 @Override
                 public Collection<? extends GrantedAuthority> getAuthorities() {
                     Set<GrantedAuthority> authorities = new HashSet<>();
-                    user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+                    roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
                     return authorities;
                 }
 

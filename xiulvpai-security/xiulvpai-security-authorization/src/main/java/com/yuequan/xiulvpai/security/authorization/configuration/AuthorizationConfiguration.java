@@ -15,7 +15,11 @@ public class AuthorizationConfiguration implements AuthorizationRegistry {
     @Override
     public void configure(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry authorizeRequests) {
         try {
-            authorizeRequests.anyRequest().permitAll();
+            authorizeRequests
+                    .antMatchers("/")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated();
         } catch (Exception e) {
             e.printStackTrace();
         }
