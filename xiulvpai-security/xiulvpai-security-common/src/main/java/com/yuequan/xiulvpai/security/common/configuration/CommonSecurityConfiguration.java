@@ -1,5 +1,6 @@
 package com.yuequan.xiulvpai.security.common.configuration;
 
+import com.yuequan.xiulvpai.common.domain.entity.User;
 import com.yuequan.xiulvpai.security.common.configuration.support.registry.AuthorizationRegistry;
 import com.yuequan.xiulvpai.security.common.configuration.support.registry.HttpSecurityRegistry;
 import com.yuequan.xiulvpai.common.respository.UserRepository;
@@ -73,44 +74,60 @@ public class CommonSecurityConfiguration extends WebSecurityConfigurerAdapter {
             var user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("username not found"));
             var roles = user.getRoles();
             roles.size(); // non lazy
-            return new UserDetails() {
-                @Override
-                public Collection<? extends GrantedAuthority> getAuthorities() {
-                    Set<GrantedAuthority> authorities = new HashSet<>();
-                    roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
-                    return authorities;
-                }
+            return new UserDefaultAndPermission(user);
+        }
+    }
 
-                @Override
-                public String getPassword() {
-                    return user.getPassword();
-                }
+    class UserDefaultAndPermission implements UserDetails{
 
-                @Override
-                public String getUsername() {
-                    return user.getUsername();
-                }
+        private User user;
 
-                @Override
-                public boolean isAccountNonExpired() {
-                    return true;
-                }
+        public UserDefaultAndPermission(User user) {
+            this.user = user;
+        }
 
-                @Override
-                public boolean isAccountNonLocked() {
-                    return true;
-                }
+        @Override
+        public Collection<? extends GrantedAuthority> getAuthorities() {
+            Set<GrantedAuthority> authorities = new HashSet<>();
+            user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+            return authorities;
+        }
 
-                @Override
-                public boolean isCredentialsNonExpired() {
-                    return true;
-                }
+        @Override
+        public String getPassword() {
+            return user.getPassword();
+        }
 
-                @Override
-                public boolean isEnabled() {
-                    return true;
-                }
-            };
+        @Override
+        public String getUsername() {
+            return user.getUsername();
+        }
+
+        @Override
+        public boolean isAccountNonExpired() {
+            return true;
+        }
+
+        @Override
+        public boolean isAccountNonLocked() {
+            return true;
+        }
+
+        @Override
+        public boolean isCredentialsNonExpired() {
+            return true;
+        }
+
+        @Override
+        public boolean isEnabled() {
+            return true;
+        }
+
+        public Set<String> getPermissions(){
+            var permissions = new HashSet<String>();
+            var roles = user.getRoles();
+            roles.forEach(role -> role.getPermissions().forEach(permission -> permissions.add(permission.getPath())));
+            return permissions;
         }
     }
 }
