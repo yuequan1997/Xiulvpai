@@ -1,12 +1,11 @@
 package com.yuequan.xiulvpai.security.authorization.access.intercept;
 
 import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * url授权过滤
@@ -19,8 +18,7 @@ public class UrlAuthorizationFilterInvocationSecurityMetadataSource implements F
     public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException {
         var filterInvocation = FilterInvocation.class.cast(o);
         String requestUrl = filterInvocation.getRequestUrl();
-
-        return null;
+        return SecurityConfig.createList();
     }
 
     @Override

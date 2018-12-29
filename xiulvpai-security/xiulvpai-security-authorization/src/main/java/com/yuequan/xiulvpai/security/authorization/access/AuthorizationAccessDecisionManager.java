@@ -19,6 +19,10 @@ public class AuthorizationAccessDecisionManager implements AccessDecisionManager
     @Override
     public void decide(Authentication authentication, Object o, Collection<ConfigAttribute> collection) throws AccessDeniedException, InsufficientAuthenticationException {
 
+        if(authentication == null){
+            throw new AccessDeniedException("Unauthorized");
+        }
+
         for (ConfigAttribute configAttribute : collection) {
             String needRole = configAttribute.getAttribute();
             for (GrantedAuthority authority : authentication.getAuthorities()) {

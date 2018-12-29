@@ -21,7 +21,9 @@ public class AuthorizationPostProcessor implements ObjectPostProcessor<FilterSec
     }
 
     @Override
-    public <O extends FilterSecurityInterceptor> O postProcess(O object) {
-        return null;
+    public <O extends FilterSecurityInterceptor> O postProcess(O filterSecurityInterceptor) {
+        filterSecurityInterceptor.setSecurityMetadataSource(metadataSource);
+        filterSecurityInterceptor.setAccessDecisionManager(accessDecisionManager);
+        return filterSecurityInterceptor;
     }
 }
