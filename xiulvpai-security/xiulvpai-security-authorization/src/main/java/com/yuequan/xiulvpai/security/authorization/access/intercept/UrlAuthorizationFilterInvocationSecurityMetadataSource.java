@@ -19,6 +19,7 @@ public class UrlAuthorizationFilterInvocationSecurityMetadataSource implements F
     public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException {
         var filterInvocation = FilterInvocation.class.cast(o);
         String requestUrl = filterInvocation.getRequestUrl();
+
         return null;
     }
 
