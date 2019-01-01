@@ -23,14 +23,16 @@ public class UrlAuthorizationFilterInvocationSecurityMetadataSource implements F
     public Collection<ConfigAttribute> getAttributes(Object o) throws IllegalArgumentException {
         var filterInvocation = FilterInvocation.class.cast(o);
         String requestUrl = filterInvocation.getRequestUrl();
-        if(authorizationDecisionMaker.isIgnoreAuthorizationUrl(requestUrl)){
-            return null;
-        }
         var roles = authorizationDecisionMaker.hasMapping(requestUrl);
         if(roles != null){
             return SecurityConfig.createList(roles.toArray(new String[roles.size()]));
         }
-        return SecurityConfig.createList("ROLE_USER");
+
+        if(authorizationDecisionMaker.isIgnoreAuthorizationUrl(requestUrl)){
+            return null;
+        }
+
+        return SecurityConfig.createList("ROLE_UNKNOWN");
     }
 
     @Override
