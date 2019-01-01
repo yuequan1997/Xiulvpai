@@ -26,7 +26,7 @@ public class AuthorizationAccessDecisionManager implements AccessDecisionManager
         for (ConfigAttribute configAttribute : collection) {
             String needRole = configAttribute.getAttribute();
             for (GrantedAuthority authority : authentication.getAuthorities()) {
-                if(authority.getAuthority().equals(needRole) || authority.getAuthority().equals(SUPER_MANAGER)){
+                if(authority.getAuthority().equals(needRole)){
                     return;
                 }
             }
