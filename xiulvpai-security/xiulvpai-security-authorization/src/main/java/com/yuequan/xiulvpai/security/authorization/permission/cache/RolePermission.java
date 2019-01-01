@@ -1,6 +1,8 @@
 package com.yuequan.xiulvpai.security.authorization.permission.cache;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
@@ -11,20 +13,9 @@ import java.util.Set;
  **/
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class RolePermission {
     private String path;
     private Set<String> roles;
-
-    @Override
-    public boolean equals(Object obj) {
-        if(obj instanceof RolePermission){
-            var rolePermission = (RolePermission) obj;
-            if(this.path.equals(rolePermission.getPath())){
-                return true;
-            }else{
-                return false;
-            }
-        }
-        return super.equals(obj);
-    }
 }
