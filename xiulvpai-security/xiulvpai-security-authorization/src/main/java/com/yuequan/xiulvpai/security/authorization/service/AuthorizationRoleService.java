@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -17,12 +18,10 @@ import java.util.List;
  */
 @Service
 @Transactional(readOnly = true)
-@CacheConfig(cacheNames = "authorization.roles")
 public class AuthorizationRoleService {
     @Autowired
     private RoleRepository roleRepository;
 
-    @Cacheable
     public List<Role> getRoles(){
         return roleRepository.findAll();
     }
