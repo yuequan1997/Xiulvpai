@@ -10,5 +10,5 @@ import org.springframework.security.config.annotation.web.configurers.Expression
  * @since
  **/
 public interface AuthorizationRegistry {
-    public void configure(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry authorizeRequests);
+    void configure(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry authorizeRequests);
 }
