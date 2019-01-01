@@ -1,9 +1,12 @@
 package com.yuequan.xiulvpai.common.domain.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -13,8 +16,16 @@ import java.util.Set;
  **/
 @Entity
 @Table(name = "roles")
-@Data
-public class Role {
+@Getter
+@Setter
+@NamedEntityGraphs(
+        @NamedEntityGraph(name = "roles.all",
+                attributeNodes = {
+                    @NamedAttributeNode("permissions")
+                }
+        )
+)
+public class Role implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
