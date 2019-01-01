@@ -5,6 +5,7 @@ import com.yuequan.xiulvpai.security.common.configuration.support.registry.Autho
 import com.yuequan.xiulvpai.security.common.configuration.support.registry.HttpSecurityRegistry;
 import com.yuequan.xiulvpai.common.respository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,7 @@ import java.util.Set;
  **/
 @Configuration
 @EnableWebSecurity
+@EnableCaching
 public class CommonSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder(){
