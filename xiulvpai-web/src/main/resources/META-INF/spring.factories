@@ -1,2 +1,2 @@
 org.springframework.context.ApplicationListener=\
-com.yuequan.xiulvpai.web.admin.support.AdminControllerApplicationListener
+org.yuequan.xiulvpai.web.admin.support.AdminControllerApplicationListener
