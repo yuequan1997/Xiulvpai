@@ -57,6 +57,9 @@ public class AuthorizationDecisionMaker implements InitializingBean {
         var allRoles = authorizationRoleService.getRoles();
 
         for (Role role : allRoles) {
+            if(role.getPermissions() == null){
+                continue;
+            }
             for (Permission permission : role.getPermissions()) {
                 var paths = permission.getPath().split(",");
                 for (String path : paths) {
