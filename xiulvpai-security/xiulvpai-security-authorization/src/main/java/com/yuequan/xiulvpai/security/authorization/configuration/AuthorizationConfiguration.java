@@ -38,19 +38,4 @@ public class AuthorizationConfiguration implements AuthorizationRegistry {
             e.printStackTrace();
         }
     }
-
-    @Bean
-    public AuthorizationAccessDecisionManager authorizationAccessDecisionManager(){
-        return new AuthorizationAccessDecisionManager();
-    }
-
-    @Bean
-    public UrlAuthorizationFilterInvocationSecurityMetadataSource urlAuthorizationFilterInvocationSecurityMetadataSource(){
-        return new UrlAuthorizationFilterInvocationSecurityMetadataSource();
-    }
-
-    @Bean
-    public AuthorizationDecisionMaker authorizationDecisionMaker(){
-        return new AuthorizationDecisionMaker();
-    }
 }

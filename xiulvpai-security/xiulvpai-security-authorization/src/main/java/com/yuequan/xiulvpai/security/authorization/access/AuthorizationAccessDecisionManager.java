@@ -6,6 +6,7 @@ import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
@@ -14,6 +15,7 @@ import java.util.Collection;
  * @author yuequan
  * @since 1.0
  **/
+@Component
 public class AuthorizationAccessDecisionManager implements AccessDecisionManager {
     public static final String SUPER_MANAGER = "admin";
     @Override

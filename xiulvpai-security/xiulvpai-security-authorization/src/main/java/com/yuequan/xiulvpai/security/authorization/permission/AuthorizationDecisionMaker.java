@@ -6,14 +6,16 @@ import com.yuequan.xiulvpai.security.authorization.permission.cache.RolePermissi
 import com.yuequan.xiulvpai.security.authorization.service.AuthorizationRoleService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import java.util.*;
 
 /**
- * 角色与权限复合操作
+ * 授权决策者
  * @author yuequan
  * @since 1.0
  **/
+@Component
 public class AuthorizationDecisionMaker implements InitializingBean {
     @Autowired
     private AuthorizationRoleService authorizationRoleService;
