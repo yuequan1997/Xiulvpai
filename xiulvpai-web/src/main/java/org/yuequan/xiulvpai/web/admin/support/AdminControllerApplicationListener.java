@@ -36,7 +36,7 @@ public class AdminControllerApplicationListener implements SmartApplicationListe
 
     private void onApplicationStartingEvent(ApplicationEnvironmentPreparedEvent event) {
         var scanner = new AnnotatedTypeScanner(AdminController.class);
-        var classes = scanner.findTypes("com.yuequan.xiulvpai");
+        var classes = scanner.findTypes("org.yuequan.xiulvpai");
         classes.forEach(clazz -> {
             var annotation = clazz.getAnnotation(AdminController.class);
             var path = annotation.path();
