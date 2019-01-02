@@ -50,7 +50,7 @@ public class AuthorizationConfiguration implements AuthorizationRegistry {
     }
 
     @Bean
-    public AuthorizationDecisionMaker rolePermissionComposite(){
+    public AuthorizationDecisionMaker authorizationDecisionMaker(){
         return new AuthorizationDecisionMaker();
     }
 }
