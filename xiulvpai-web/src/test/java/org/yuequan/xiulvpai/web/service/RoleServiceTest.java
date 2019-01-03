@@ -8,7 +8,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
-import org.yuequan.xiulvpai.common.domain.entity.Role;
 import org.yuequan.xiulvpai.web.exception.ResourceNotFoundException;
 import org.yuequan.xiulvpai.web.factory.RoleFactory;
 
