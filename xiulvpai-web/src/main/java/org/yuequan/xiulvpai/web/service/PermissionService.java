@@ -74,10 +74,14 @@ public class PermissionService {
             parent = null;
         }
         permission.setParent(parent);
+        permission.setAncestors(generateAncestors(permission, parent));
+    }
+
+    public String generateAncestors(Permission permission, Permission parent){
         if(parent == null){
-            permission.setAncestors(ANCESTOR_DELIMITER + permission.getId() + ANCESTOR_DELIMITER);
+            return ANCESTOR_DELIMITER + permission.getId() + ANCESTOR_DELIMITER;
         }else{
-            permission.setAncestors(parent.getAncestors() + permission.getId() + ANCESTOR_DELIMITER);
+            return parent.getAncestors() + permission.getId() + ANCESTOR_DELIMITER;
         }
     }
 }
