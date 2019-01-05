@@ -56073,9 +56073,14 @@ document.addEventListener("turbolinks:load", function() {
         alignment: 'right',
         stopPropagation: false
     });
-    $('.collapsible').collapsible({
 
+    $('.collapsible.collapsible-accordion > li').each((index, dom) => {
+        if($(dom).find(".collapsible-body li.active").length != 0){
+            $(dom).addClass("active");
+        }
     });
+    
+    $('.collapsible').collapsible();
     $('#nav-mobile').sidenav({
         edge: 'left'
     });
