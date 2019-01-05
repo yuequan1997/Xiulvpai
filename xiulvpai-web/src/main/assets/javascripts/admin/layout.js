@@ -1,4 +1,4 @@
-$(document).ready(() => {
+document.addEventListener("turbolinks:load", function() {
     console.debug("Initial layout start");
     $('.profile-dropdown-button').dropdown({
         inDuration: 300,
@@ -10,7 +10,9 @@ $(document).ready(() => {
         alignment: 'right',
         stopPropagation: false
     });
-    $('.collapsible').collapsible();
+    $('.collapsible').collapsible({
+
+    });
     $('#nav-mobile').sidenav({
         edge: 'left'
     });
@@ -21,4 +23,4 @@ $(document).ready(() => {
 
     require('./component/_delete');
     $('.modal').modal();
-});
+})

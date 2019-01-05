@@ -4,5 +4,7 @@ window.jQuery = $;
 window.d3 = require('d3');
 window._ = require('lodash');
 window.dTree = require('./admin/component/dTree.min');
+window.Turbolinks = require("turbolinks");
+Turbolinks.start();
 require('./materialize/materialize');
 require('./admin/layout');

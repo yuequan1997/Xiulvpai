@@ -1,0 +1,24 @@
+<aside id="left-sidebar" th:fragment="sidebar">
+  <ul id="nav-mobile" class="sidenav">
+    <li class="bold" ui:active="${#mvc.url('HC#index').build()}">
+      <a href="/admin" th:href="${#mvc.url('HC#index').build()}" class="waves-effect waves-teal"><i class="material-icons dp48">dashboard</i> Dashboard</a>
+    </li>
+    <li class="no-padding">
+      <ul class="collapsible collapsible-accordion">
+        <li class="bold">
+          <a class="collapsible-header waves-effect waves-teal" tabindex="0"><i class="material-icons dp48">supervisor_account</i> User Manage</a>
+          <div class="collapsible-body">
+            <ul>
+              <li ui:active="${#mvc.url('UC#index').build()}"><a href="admin/users" th:href="${#mvc.url('UC#index').build()}">Users Mange</a></li>
+              <li ui:active="${#mvc.url('RC#index').build()}"><a href="admin/users" th:href="${#mvc.url('RC#index').build()}">Roles Mange</a></li>
+              <li ui:active="${#mvc.url('PC#index').build()}"><a href="admin/users" th:href="${#mvc.url('PC#index').build()}">Permissions Mange</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <a id="left-sidebar__menu-button" href="#" data-target="nav-mobile" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only sidenav-trigger">
+    <i class="material-icons">menu</i>
+  </a>
+</aside>
