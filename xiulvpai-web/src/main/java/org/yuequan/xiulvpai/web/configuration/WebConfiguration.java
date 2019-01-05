@@ -1,6 +1,8 @@
 package org.yuequan.xiulvpai.web.configuration;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.yuequan.xiulvpai.web.support.thymeleaf.dialect.ui.UIDialect;
 
 /**
  * @author yuequan
@@ -8,4 +10,8 @@ import org.springframework.context.annotation.Configuration;
  **/
 @Configuration
 public class WebConfiguration {
+    @Bean
+    public UIDialect uiDialect(){
+        return new UIDialect();
+    }
 }
