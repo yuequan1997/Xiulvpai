@@ -40,6 +40,10 @@ public class UIAppendActiveClassProcessor extends AbstractAttributeTagProcessor 
     protected void doProcess(ITemplateContext context, IProcessableElementTag tag, AttributeName attributeName, String attributeValue, IElementTagStructureHandler structureHandler) {
         final var configuration = context.getConfiguration();
         final var parser = StandardExpressions.getExpressionParser(configuration);
+
+        var attributeValues = attributeValue.split(",");
+        attributeValue = attributeValues[0];
+        boolean isPrefixMatch = attributeValues.length == 0;
         final var expression = parser.parseExpression(context, attributeValue);
         var url = (String) expression.execute(context);
         if(context instanceof WebEngineContext){
@@ -56,10 +60,11 @@ public class UIAppendActiveClassProcessor extends AbstractAttributeTagProcessor 
             if(url.equals(requestUrl)){
                 addActiveClass(tag, structureHandler);
             }else{
-                url = url + "/";
-
-                if(requestUrl.startsWith(url)){
-                    addActiveClass(tag, structureHandler);
+                if(isPrefixMatch){
+                    url = url + "/";
+                    if(requestUrl.startsWith(url)){
+                        addActiveClass(tag, structureHandler);
+                    }
                 }
             }
         }
