@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+$(document).ready(() => {
     console.debug("Initial layout start");
     $('.profile-dropdown-button').dropdown({
         inDuration: 300,
@@ -28,4 +28,4 @@ document.addEventListener("turbolinks:load", function() {
 
     require('./component/_delete');
     $('.modal').modal();
-})
+});
