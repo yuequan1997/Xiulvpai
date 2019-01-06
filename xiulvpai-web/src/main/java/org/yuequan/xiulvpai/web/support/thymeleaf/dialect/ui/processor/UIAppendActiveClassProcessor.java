@@ -54,15 +54,27 @@ public class UIAppendActiveClassProcessor extends AbstractAttributeTagProcessor 
             }
 
             if(url.equals(requestUrl)){
-                var eClassAttribute = tag.getAttribute("class");
-                final String originClass;
-                if(eClassAttribute == null){
-                    originClass = "";
-                }else{
-                    originClass = eClassAttribute.getValue();
+                addActiveClass(tag, structureHandler);
+            }else{
+                url = url + "/";
+
+                if(requestUrl.startsWith(url)){
+                    addActiveClass(tag, structureHandler);
                 }
-                structureHandler.setAttribute("class", originClass + " active");
             }
         }
     }
+
+    private void addActiveClass(IProcessableElementTag tag, IElementTagStructureHandler structureHandler) {
+        var eClassAttribute = tag.getAttribute("class");
+        final String originClass;
+        if(eClassAttribute == null){
+            originClass = "";
+        }else{
+            originClass = eClassAttribute.getValue();
+        }
+        structureHandler.setAttribute("class", originClass + " active");
+    }
+
+
 }
