@@ -5,3 +5,5 @@ spring:
     web:
       pageable:
         default-page-size: 10
+  messages:
+    basename: i18n/messages
