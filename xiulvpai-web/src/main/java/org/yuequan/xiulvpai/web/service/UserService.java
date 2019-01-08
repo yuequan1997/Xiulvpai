@@ -35,7 +35,11 @@ public class UserService {
         if(userRepository.findByUsername(user.getUsername()).isPresent() && (user.getId() == null || user.getId().isBlank())){
             throw new ResourceConflictException("");
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if(user.getPassword() == null && user.getId() != null){
+            user.setPassword(userRepository.findById(user.getId()).get().getPassword());
+        }else{
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         return userRepository.save(user);
     }
 
