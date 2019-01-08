@@ -43,7 +43,7 @@ public class UIAppendActiveClassProcessor extends AbstractAttributeTagProcessor 
 
         var attributeValues = attributeValue.split(",");
         attributeValue = attributeValues[0];
-        boolean isPrefixMatch = attributeValues.length == 0;
+        boolean isPrefixMatch = attributeValues.length == 1;
         final var expression = parser.parseExpression(context, attributeValue);
         var url = (String) expression.execute(context);
         if(context instanceof WebEngineContext){
