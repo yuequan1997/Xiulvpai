@@ -25,7 +25,9 @@ public class AuthorizationDecisionMaker implements InitializingBean {
 
     private Set<RolePermission> rolePermissions;
 
-    private static final String[] IGNORE_AUTHORIZATION_URLS = {"/assets/**", "/favicon.ico", "/public/**"};
+    private static final String[] IGNORE_AUTHORIZATION_URLS = {"/assets/**", "/favicon.ico", "/public/**", "/**"};
+
+    private static final String[] MUST_AUTHORIZATION_URLS = {"/admin/**", "/admin"};
 
     /**
      * has mapping?
@@ -38,6 +40,13 @@ public class AuthorizationDecisionMaker implements InitializingBean {
                 return rolePermission.getRoles();
             }
         }
+
+        for (String mustAuthorizationUrl : MUST_AUTHORIZATION_URLS) {
+            if(antPathMatcher.match(mustAuthorizationUrl, url)){
+                return Set.of("ROLE_NOT_PERMIT");
+            }
+        }
+
         return null;
     }
 
