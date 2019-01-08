@@ -18,45 +18,9 @@
           <a href="admin/users/new" th:href="${#mvc.url('UC#newUser').build()}" class="btn-floating btn-large waves-effect waves-light right"><i class="material-icons">add</i></a>
         </div>
       </div>
-      <table class="striped highlight centered">
-        <thead>
-          <tr>
-            <th>用户名</th>
-            <th>名称</th>
-            <th>性别</th>
-            <th>注册时间</th>
-            <th>操作</th>
-          </tr>
-        </thead>
+      <th:block th:replace="~{admin/shared/table :: table(thead='username,name,gender,createdAt', model='user')}">
 
-        <tbody>
-          <tr th:each="user : ${page.getContent()}" th:object="${user}">
-            <td th:text="*{username}"></td>
-            <td th:text="*{name}"></td>
-            <td th:text="*{gender}"></td>
-            <td th:text="*{createdAt}"></td>
-            <td>
-              <a th:href="${(#mvc.url('UC#edit').arg(0, user.id)).build()}" class="waves-effect waves-light btn">Edit</a>
-              <a class="waves-effect waves-light delete-btn btn" th:data-href="${(#mvc.url('UC#destroy').arg(0, user.id)).build()}">Delete</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="center-align">
-        <ul th:if="${page.getTotalPages() > 0}" class="pagination">
-          <li class="waves-effect" th:classappend="${page.isFirst() ? 'disabled' : ''}">
-            <a href="javascript:;" th:href="${page.isFirst() ? 'javascript:;' : './?page=' + (page.getNumber() - 1)}" ><i class="material-icons">chevron_left</i></a>
-          </li>
-          <li th:each="i: ${#numbers.sequence(0, page.getTotalPages() - 1)}" class="waves-effect" th:classappend="${(page.getNumber())  == i ? 'active' : ''}">
-            <a href="javascript:;" th:href="${'./?page='+(i)}" th:text="${i + 1}">1</a>
-          </li>
-          <li th:classappend="${page.isLast() ? 'disabled' : ''}" class="waves-effect">
-            <a href="javascript:;" th:href="${page.isLast() ? 'javascript:;' : './?page=' + (page.getNumber() + 1)}">
-              <i class="material-icons">chevron_right</i>
-            </a>
-          </li>
-        </ul>
-      </div>
+      </th:block>
     </div>
   </div>
 </body>
