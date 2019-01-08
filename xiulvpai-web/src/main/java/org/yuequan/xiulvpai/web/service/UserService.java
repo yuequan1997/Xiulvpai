@@ -35,7 +35,7 @@ public class UserService {
         if(userRepository.findByUsername(user.getUsername()).isPresent() && (user.getId() == null || user.getId().isBlank())){
             throw new ResourceConflictException("");
         }
-        if(user.getPassword() == null && user.getId() != null){
+        if((user.getPassword() == null || user.getPassword().isBlank()) && user.getId() != null){
             user.setPassword(userRepository.findById(user.getId()).get().getPassword());
         }else{
             user.setPassword(passwordEncoder.encode(user.getPassword()));
