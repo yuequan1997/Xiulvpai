@@ -1,0 +1,4 @@
+<td>
+    <a th:href="${(#mvc.url('RC#edit').arg(0, object.id)).build()}" class="waves-effect waves-light btn">Edit</a>
+    <a class="waves-effect waves-light delete-btn btn" th:data-href="${(#mvc.url('RC#destroy').arg(0, object.id)).build()}">Delete</a>
+</td>
