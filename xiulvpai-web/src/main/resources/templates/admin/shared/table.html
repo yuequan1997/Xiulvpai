@@ -3,16 +3,13 @@
     <thead>
     <tr>
       <th th:each="head : ${#table.toI18NModelAttrPrefixes(model, thead)}" th:text="#{${head}}"></th>
-      <th>操作</th>
+      <th th:if="${operation != null}">操作</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="object : ${page.getContent()}">
-      <td th:each="value : ${#table.getValue(model, object)}" th:text="${value}"></td>
-      <td>
-        <#--<a th:href="${(#mvc.url('RC#edit').arg(0, role.id)).build()}" class="waves-effect waves-light btn">Edit</a>-->
-        <#--<a class="waves-effect waves-light delete-btn btn" th:data-href="${(#mvc.url('RC#destroy').arg(0, role.id)).build()}">Delete</a>-->
-      </td>
+      <td th:each="value : ${#table.getValue(object, thead)}" th:text="${value}"></td>
+      <td th:if="${operation != null}" th:replace="~{${operation}}"></td>
     </tr>
     </tbody>
   </table>

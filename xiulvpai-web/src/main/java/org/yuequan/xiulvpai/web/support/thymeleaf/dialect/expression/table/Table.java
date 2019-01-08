@@ -1,5 +1,8 @@
 package org.yuequan.xiulvpai.web.support.thymeleaf.dialect.expression.table;
 
+import org.springframework.security.util.FieldUtils;
+
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -31,8 +34,18 @@ public class Table {
         return i18nMessageAddedPrefixes;
     }
 
-    public List<Object> getValue(Object object, String attrNames){
+    public List<Object> getValue(Object object, String attrNames) throws NoSuchFieldException, IllegalAccessException {
         var values = new ArrayList<Object>();
+        var fieldNames = attrNames.split(",");
+        for (String fieldName : fieldNames) {
+            values.add(getFieldValue(object, fieldName));
+        }
         return values;
+    }
+
+    private Object getFieldValue(Object object, String fieldName) throws NoSuchFieldException, IllegalAccessException {
+        Field field = object.getClass().getDeclaredField(fieldName);
+        field.setAccessible(true);
+        return field.get(object);
     }
 }

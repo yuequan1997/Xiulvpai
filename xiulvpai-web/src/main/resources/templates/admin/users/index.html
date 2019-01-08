@@ -18,7 +18,7 @@
           <a href="admin/users/new" th:href="${#mvc.url('UC#newUser').build()}" class="btn-floating btn-large waves-effect waves-light right"><i class="material-icons">add</i></a>
         </div>
       </div>
-      <th:block th:replace="~{admin/shared/table :: table(thead='username,name,gender,createdAt', model='user')}">
+      <th:block th:replace="~{admin/shared/table :: table(thead='username,name,gender,createdAt', model='user', operation='admin/users/_operation')}">
 
       </th:block>
     </div>
