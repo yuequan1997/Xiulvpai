@@ -51,7 +51,12 @@ class UserControllerTest extends TestController{
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("./"));
         // TODO: ConflictException
-
+        var user = userService.save(UserFactory.getUser());
+        authenticatedMockMvc.perform(post("/admin/users")
+                .param("username", user.getUsername())
+                .param("name", "test").param("password", "123456"))
+                .andExpect(status().isConflict())
+                .andExpect(redirectedUrl("./"));
     }
 
     @Test
